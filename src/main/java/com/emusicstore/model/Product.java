@@ -15,6 +15,7 @@ private  String productId;
     private String productManufacturer;
 
     private  int name;
+    private  int isc;
 
     public String getProductId() {
         return productId;
