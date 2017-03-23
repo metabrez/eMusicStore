@@ -14,6 +14,8 @@ private  String productId;
     private  int unitInStock;
     private String productManufacturer;
 
+    private  int name;
+
     public String getProductId() {
         return productId;
     }
