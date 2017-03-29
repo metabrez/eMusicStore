@@ -11,15 +11,67 @@
             <p class="lead">Fill the belows information to add the products: </p>
 
         </div>
-<form:form action="#" method="post" commandName="prouct">
+<form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post" commandName="prouct">
 
         <div class="form-group">
 
-            <label for="name">Name<label>
+            <label for="name">Name</label>
                 <form:input path="productName" id="name" class="form-Control"/>
 
             </div>
-        </form:form>
+
+    <div class="form-group">
+
+        <label for="category">Category</label>
+        <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value="instrument"/>Instrument</label>
+        <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value="record"/>Record</label>
+        <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value="accessory"/>Accessory</label>
+        <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category" value=""/></label>
+    </div>
+    <div class="form-group">
+
+        <label for="description">Description</label>
+                <form:textarea path="productDesription" id="description" class="form-Control"/>
+
+    </div>
+    <div class="form-group">
+
+        <label for="price">Price</label>
+                <form:input path="productPrice" id="price" class="form-Control"/>
+
+    </div>
+
+        <div class="form-group">
+
+            <label for="category">Condition</label>
+            <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition" value="new"/>New</label>
+            <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition" value="used"/>Used</label>
+        </div>
+
+    <div class="form-group">
+
+        <label for="category">Status</label>
+        <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active"/>Active</label>
+        <label class="checkbox-inline"><form:radiobutton path="productCondition" id="status" value="inactive"/>Inactive</label>
+    </div>
+    <div class="form-group">
+
+        <label for="unitInStock">Unit In Stock<label>
+                <form:input path="unitInStock" id="unitInStock" class="form-Control"/>
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="manufacturer">Manufacturer<label>
+                <form:input path="productManufacturer" id="manufacturer" class="form-Control"/>
+
+    </div>
+<br><br>
+    <input type="submit" value="submit" class="btn btn-default">
+
+    <a href="<c:url value="/admin/productInventory"/>" class="btn btn-default">Cancel</a>
+</form:form>
     </div>
 </div>
 
