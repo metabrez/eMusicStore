@@ -3,13 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
         <property name="driverClassName" value="org.h2.Driver"></property>
         <property name="url" value="jdbc:h2:tcp://localhost/~/test"></property>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
+
+<!--    <bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name = "driverClassName" value = "com.mysql.jdbc.Driver" />
+        <property name = "url" value = "jdbc:mysql://localhost:3306/emusic" />
+        <property name = "username" value = "root" />
+        <property name = "password" value = "engineer" />
+    </bean>-->
+
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 
         <property name="dataSource" ref="dataSource"></property>
