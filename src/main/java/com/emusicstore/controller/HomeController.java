@@ -82,13 +82,24 @@
             model.addAttribute("prouct",product);
             return "addProduct";
     }
+
+        @RequestMapping("/admin/productInventory/deleteProduct/{id}")
+        public  String deleteProduct(@PathVariable String id, Model model){
+
+            productDao.deleteProduct(id);
+           /* Product product=productDao.getProductById(id);
+*/
+           return  "redirect:/admin/productInventory";
+
+
+        }
 @RequestMapping(value = "/admin/productInventory/addProduct",method= RequestMethod.POST)
 
         public String addProductPost(@ModelAttribute("product") Product product){
 
 productDao.addProduct(product);
 
-return ":/admin/productInventory";
+return "redirect:/admin/productInventory";
 }
     }
 
