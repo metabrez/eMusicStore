@@ -7,7 +7,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
 
-           <!-- /WEB-INF/dispatcher-servlet.xml,-->
+           /WEB-INF/dispatcher-servlet.xml,
             /WEB-INF/applicationContext.xml
 
         </param-value>
@@ -19,13 +19,13 @@
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
-        <init-param>
+       <!-- <init-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/dispatcher-servlet.xml
-            <!--/WEB-INF/applicationContext.xml-->
+            &lt;!&ndash;/WEB-INF/applicationContext.xml&ndash;&gt;
         </param-value>
-    </init-param>
+    </init-param>-->
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
