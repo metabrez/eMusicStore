@@ -1,5 +1,8 @@
+<%--<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>--%>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/views/template/header.jsp"%>>
 
 <div class="container-wrapper">
@@ -71,6 +74,7 @@
 <label class="control-label" for="productImage">Upload Picture</label>
         <%--<form:input id="productImage" path="productImage" type="file" class="form:input-large"></form:input>--%>
     <form:input path="productImage" id="productImage"  type="file" class="form:input-large"></form:input>
+
 
     </div>
 <br><br>
