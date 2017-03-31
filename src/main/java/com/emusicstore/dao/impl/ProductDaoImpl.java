@@ -24,12 +24,21 @@
 
         public void addProduct(Product product){
 
-            Session session=sessionFactory.getCurrentSession();
+                Session session=sessionFactory.getCurrentSession();
 
-            session.saveOrUpdate(product);
+                session.saveOrUpdate(product);
 
-            session.flush();
-        }
+                session.flush();
+            }
+
+            public void editProduct(Product product){
+
+                Session session=sessionFactory.getCurrentSession();
+
+                session.saveOrUpdate(product);
+
+                session.flush();
+            }
 
         public Product getProductById(String id){
 

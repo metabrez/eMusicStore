@@ -25,10 +25,11 @@
                  */
                 @Controller
                 public class HomeController {
+
                     private Path path;
 
                 @Autowired
-                     private ProductDao productDao;
+                private ProductDao productDao;
 
                     @RequestMapping("/")
 
@@ -38,12 +39,13 @@
                     }
 
                     @RequestMapping("/productList")
-                public  String getProducts(Model model){
+                    public  String getProducts(Model model){
                         List<Product> products=productDao.getAllProducts();
                         model.addAttribute("products",products);
                         return "productList";
 
                     }
+
                 @RequestMapping("/productList/viewProduct/{productId}")
                 public  String viewProduct(@PathVariable String productId, Model model)throws IOException{
 
@@ -61,8 +63,7 @@
                 }
 
                 @RequestMapping("/admin/productInventory")
-
-                    public String productInventory(Model model){
+                public String productInventory(Model model){
 
                             List<Product> products=productDao.getAllProducts();
                             model.addAttribute("products",products);
@@ -71,10 +72,10 @@
 
 
                 }
+                       //Adding product
 
                 @RequestMapping("/admin/productInventory/addProduct")
-
-                    public  String AddProduct(Model model){
+                public  String AddProduct(Model model){
 
                         Product product=new Product();
 
@@ -82,9 +83,39 @@
                         product.setProductCondition("new");
                         product.setProductStatus("Active");
 
-                        model.addAttribute("prouct",product);
+                        model.addAttribute("product",product);
                         return "addProduct";
                 }
+
+                    //Adding Product psot method
+                    @RequestMapping(value = "/admin/productInventory/addProduct",method= RequestMethod.POST)
+                    public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request){
+
+                        productDao.addProduct(product);
+
+                        MultipartFile productImage=product.getProductImage();
+                        String rootDirectory=request.getSession().getServletContext().getRealPath("/");
+
+                        path= Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" +product.getProductId()+ ".png");
+
+                        if(productImage !=null && !productImage.isEmpty()){
+
+                            try{
+
+                                productImage.transferTo(new File(path.toString()));
+                            }
+                            catch (Exception e){
+
+                            /*e.printStackTrace();*/
+
+                                throw  new RuntimeException("Product Image saving Failed" +e);
+                            }
+                        }
+                        return "redirect:/admin/productInventory";
+                    }
+
+
+
                         //Deleting Product
 
                     @RequestMapping("/admin/productInventory/deleteProduct/{id}")
@@ -108,33 +139,50 @@
                         return  "redirect:/admin/productInventory";
                     }
 
-                    //Adding Product
-                    @RequestMapping(value = "/admin/productInventory/addProduct",method= RequestMethod.POST)
 
-                            public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request){
+                                //edit product
 
-                    productDao.addProduct(product);
+                    @RequestMapping("/admin/productInventory/editProduct/{id}")
+                    public String editProduct(@PathVariable("id") String id,Model model ){
+
+                                Product product=productDao.getProductById(id);
+
+                                model.addAttribute(product);
+
+                                return  "editProduct";
+
+                            }
+                               //Edit product Post Method
+
+                    @RequestMapping(value = "/admin/productInventory/editProduct/",method = RequestMethod.POST)
+                    public  String editProduct(@ModelAttribute("product")Product product,Model model,HttpServletRequest request){
 
                         MultipartFile productImage=product.getProductImage();
+
                         String rootDirectory=request.getSession().getServletContext().getRealPath("/");
 
-                        path= Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" +product.getProductId()+ ".png");
+                        path=Paths.get(rootDirectory +"\\WEB-INF\\resources\\images\\" +product.getProductId()+".png");
 
-                    if(productImage !=null && !productImage.isEmpty()){
+                        if (productImage!=null && !productImage.isEmpty()){
 
-                        try{
+                            try {
+                                productImage.transferTo(new File(path.toString()));
 
-                            productImage.transferTo(new File(path.toString()));
-                        }
-                        catch (Exception e){
-
-                            e.printStackTrace();
-
-                            throw  new RuntimeException("Product Image saving Failed" +e);
-                        }
-                    }
-                                 return "redirect:/admin/productInventory";
                             }
+                            catch (Exception e){
+
+                               throw new RuntimeException("Product Saving Image failed" +e);
+
+
+                            }
+                            }
+
+                            productDao.editProduct(product);
+
+                        return "redirect:/admin/productInventory";
+
+                        }
+
 
                         }
 
