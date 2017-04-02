@@ -4,6 +4,7 @@
                 import org.springframework.beans.factory.annotation.Autowired;
                 import org.springframework.stereotype.Controller;
                 import org.springframework.ui.Model;
+                import org.springframework.validation.BindingResult;
                 import org.springframework.web.bind.annotation.ModelAttribute;
                 import org.springframework.web.bind.annotation.PathVariable;
                 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@
                 import org.springframework.web.multipart.MultipartFile;
 
                 import javax.servlet.http.HttpServletRequest;
+                import javax.validation.Valid;
                 import java.io.File;
                 import java.io.IOException;
 
@@ -89,8 +91,12 @@
 
                     //Adding Product psot method
                     @RequestMapping(value = "/admin/productInventory/addProduct",method= RequestMethod.POST)
-                    public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request){
+                    public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request){
 
+                    if (result.hasErrors()){
+
+                        return "addProduct";
+                    }
                         productDao.addProduct(product);
 
                         MultipartFile productImage=product.getProductImage();
@@ -155,8 +161,12 @@
                                //Edit product Post Method
 
                     @RequestMapping(value = "/admin/productInventory/editProduct/",method = RequestMethod.POST)
-                    public  String editProduct(@ModelAttribute("product")Product product,Model model,HttpServletRequest request){
+                    public  String editProduct(@Valid @ModelAttribute("product")Product product,Model model,BindingResult result,HttpServletRequest request){
 
+                        if (result.hasErrors()){
+
+                            return "editProduct";
+                        }
                         MultipartFile productImage=product.getProductImage();
 
                         String rootDirectory=request.getSession().getServletContext().getRealPath("/");

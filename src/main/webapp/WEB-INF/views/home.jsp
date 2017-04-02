@@ -1,16 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+&lt;%&ndash;
   Created by IntelliJ IDEA.
   User: shams
   Date: 3/21/2017
   Time: 8:51 PM
   To change this template use File | Settings | File Templates.
---%>
+&ndash;%&gt;
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
-    <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +71,25 @@
 
     </div>
 </div>
+--%>
 
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@include file="/WEB-INF/views/template/header.jsp"%>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<%--javasc--%>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Carousel
 ================================================== -->
@@ -83,7 +102,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+            <img class="first-slide" src="<c:url value="/resources/images/back1.jpg"/>" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Example headline.</h1>
@@ -93,7 +112,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+            <img class="second-slide" src="<c:url value="/resources/images/back2.jpg"/>" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Another example headline.</h1>
@@ -103,7 +122,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+            <img class="third-slide" src="<c:url value="/resources/images/back3.jpg"/>" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
@@ -122,7 +141,6 @@
         <span class="sr-only">Next</span>
     </a>
 </div><!-- /.carousel -->
-
 
 <!-- Marketing messaging and featurettes
 ================================================== -->
@@ -155,6 +173,7 @@
 
 
 
+<%--
 
     <!-- FOOTER -->
     <footer>
@@ -164,6 +183,8 @@
 
 </div><!-- /.container -->
 
+</body>
+</html>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -172,5 +193,8 @@
 <script>window.jQuery || document.write('<script src="<c:url value="/resources/js/jquery-3.2.0.min.js"/>"<\/script>')</script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/></script>
 
-</body>
-</html>
+--%>
+
+
+    <%@include file="/WEB-INF/views/template/footer.jsp"%>
+            </div>
