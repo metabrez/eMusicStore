@@ -12,9 +12,22 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>My music Store</title>
+    <%--Angular js--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <%--javasc--%>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/carousel.css"/>" rel="stylesheet">
@@ -48,14 +61,17 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<c:url value="/"/>">Home</a></li>
-                        <li><a href="<c:url value="/productList"/>">Products</a></li>
+                        <li><a href="<c:url value="/product/productList"/>">Products</a></li>
                         <li><a href="#contact">Contact</a></li>
 
                     </ul>
 
                     <ul class="nav navbar-nav pull-right">
-
+                        <li><a href="<c:url value="/logout"/> ">Logout</a></li>
                         <li><a href="<c:url value="/admin"/>">Admin</a></li>
+                        <li><a href="<c:url value="/register"/>">Register</a></li>
+
+
                     </ul>
                 </div>
             </div>

@@ -1,77 +1,78 @@
-        package com.emusicstore.dao.impl;
+package com.emusicstore.dao.impl;
 
-        import com.emusicstore.dao.ProductDao;
-        import com.emusicstore.model.Product;
-        import org.hibernate.Query;
-        import org.hibernate.Session;
-        import org.hibernate.SessionFactory;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Repository;
-        import org.springframework.transaction.annotation.Transactional;
+import com.emusicstore.dao.ProductDao;
+import com.emusicstore.model.Product;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-        import java.util.List;
+import java.util.List;
 
-        /**
-         * Created by shams on 3/27/2017.
-         */
+/**
+ * Created by shams on 3/27/2017.
+ */
 
-        @Repository
-        @Transactional
-        public class ProductDaoImpl implements ProductDao {
-            @Autowired
+@Repository
+@Transactional
+public class ProductDaoImpl implements ProductDao {
 
-            private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-        public void addProduct(Product product){
+    public Product getProductById(int id) {
 
-                Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
+      Product product= (Product) session.get(Product.class,id);
+        /*Product product = (Product) session.get(ProductDao.class, id);*/
+        return product;
 
-                session.saveOrUpdate(product);
+    }
 
-                session.flush();
-            }
+    public List<Product> getProductList() {
 
-            public void editProduct(Product product){
+        Session session = sessionFactory.getCurrentSession();
 
-                Session session=sessionFactory.getCurrentSession();
+        Query query = session.createQuery("From  Product");
 
-                session.saveOrUpdate(product);
+        List<Product> productList = query.list();
 
-                session.flush();
-            }
-
-        public Product getProductById(String id){
-
-            Session session=sessionFactory.getCurrentSession();
-
-            Product product= (Product) session.get(Product.class,id);
-
-            session.flush();
-
-            return product;
+        session.flush();
+        return productList;
 
 
-        }
+    }
 
-           public List<Product> getAllProducts(){
-               Session session=sessionFactory.getCurrentSession();
+    public void addProduct(Product product) {
 
-               Query query=session.createQuery("from Product");
+        Session session = sessionFactory.getCurrentSession();
 
-               List<Product> products=query.list();
+        session.saveOrUpdate(product);
 
-               session.flush();
-
-               return  products;
+        session.flush();
 
 
+    }
 
-            }
+    public void editProduct(Product product) {
 
-            public  void deleteProduct(String id){
+        Session session = sessionFactory.getCurrentSession();
 
-               Session session=sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
 
-               session.delete(getProductById(id));
-            }
-        }
+        session.flush();
+
+    }
+
+    public void deleteProduct(Product product) {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        session.delete(product);
+
+        session.flush();
+    }
+
+}
