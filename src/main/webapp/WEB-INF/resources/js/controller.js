@@ -29,8 +29,10 @@ cartApp.controller("cartCtrl", function ($scope, $http) {
     };
 
     $scope.addToCart = function (productId) {
-        $http.put("/eMusicStore/rest/cart/add/" + productId).success(function () {
-            alert("Product successsfully added to cart.");
+        alert("I am at addToCart.");
+        $http.put("/eMusicStore/rest/cart/add/" + productId)
+            .success(function () {
+            alert("hello tabrez! Product successsfully added to cart.");
         }).error(function () {
             alert("error occured");
         });

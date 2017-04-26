@@ -15,6 +15,8 @@ public class Authorities {
     private String userName;
     private String authority;
 
+    public Authorities(){}
+
     public int getAuthoritiesId() {
         return authoritiesId;
     }

@@ -20,17 +20,16 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CustomerDaoImpl implements CustomerDao{
+public class CustomerDaoImpl implements CustomerDao {
 
 
     @Autowired
     private SessionFactory sessionFactory;
 
 
-
     public void addCustomer(Customer customer) {
 
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
 
         customer.getBillingAddress().setCustomer(customer);
 
@@ -42,21 +41,21 @@ public class CustomerDaoImpl implements CustomerDao{
 
         //New Users Details in the table
 
-        Users newUser=new Users();
+        Users newUser = new Users();
         newUser.setUserName(customer.getUsername());
         newUser.setPassword(customer.getPassword());
 
         newUser.setEnabled(true);
         newUser.setCustomerId(customer.getCustomerId());
 
-        Authorities newAuthority=new Authorities();
+        Authorities newAuthority = new Authorities();
         newAuthority.setUserName(customer.getUsername());
         newAuthority.setAuthority("ROLE_USER");
 
         session.saveOrUpdate(newUser);
         session.saveOrUpdate(newAuthority);
 
-        Cart newCart=new Cart();
+        Cart newCart = new Cart();
         newCart.setCustomer(customer);
         customer.setCart(newCart);
         session.saveOrUpdate(customer);
@@ -68,21 +67,31 @@ public class CustomerDaoImpl implements CustomerDao{
 
     public Customer getCustomerById(int customerId) {
 
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
 
-        return (Customer) session.get(Customer.class,customerId);
-
+        return (Customer) session.get(Customer.class, customerId);
 
 
     }
 
 
     public List<Customer> getAllCustomers() {
-        Session session=sessionFactory.getCurrentSession();
-        Query query=session.createQuery("from Customer");
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Customer");
 
-        List<Customer> customerList=query.list();
+        List<Customer> customerList = query.list();
 
         return customerList;
+    }
+
+    public Customer getCustomerByUsername(String username) {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery("from Customer where  username=?");
+        query.setString(0, username);
+
+        return (Customer) query.uniqueResult();
+
     }
 }

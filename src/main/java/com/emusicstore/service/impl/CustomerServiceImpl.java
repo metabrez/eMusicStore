@@ -34,4 +34,10 @@ public CustomerDao customerDao;
     public List<Customer> getAllCustomers() {
         return customerDao.getAllCustomers();
     }
+
+    @Override
+    public  Customer getCustomerByUsername(String username){
+
+      return customerDao.getCustomerByUsername(username);
+    }
 }
