@@ -33,4 +33,12 @@
 
         <p>Here, you can view, check and modify the product Inventory </p>
 
-        <%@include file="/WEB-INF/views/template/footer.jsp"%>
+
+        <br><br>
+        <h3>
+            <a href="<c:url value="/admin/customer" />">Customer Management</a>
+        </h3>
+
+        <p>Here,You can view Customer Information </p>
+
+    <%@include file="/WEB-INF/views/template/footer.jsp"%>

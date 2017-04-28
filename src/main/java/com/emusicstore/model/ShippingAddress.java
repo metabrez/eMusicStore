@@ -4,12 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 /**
  * Created by shams on 4/20/2017.
  */
 @Entity
-public class ShippingAddress {
+public class ShippingAddress implements Serializable {
 
     @Id
     @GeneratedValue

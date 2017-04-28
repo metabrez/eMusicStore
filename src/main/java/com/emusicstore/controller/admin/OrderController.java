@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by shams on 4/26/2017.
  */
 @Controller
-@RequestMapping("order/{cartId}")
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
     private CartService cartService;
     @Autowired
     private CustomerOrderService customerOrderService;
+
+    @RequestMapping(value = "/{cartId}")
     public String createOrder(@PathVariable("cartId")int cartId){
 
         CustomerOrder customerOrder=new CustomerOrder();
@@ -32,7 +34,7 @@ public class OrderController {
         customerOrder.setBillingAddress(customer.getBillingAddress());
         customerOrder.setShippingAddress(customer.getShippingAddress());
         customerOrderService.addCustomerOrder(customerOrder);
-        return "redirect:/checkout?cartId=" +cartId;
+        return "redirect:/checkout?cartId="+cartId;
 
 
     }

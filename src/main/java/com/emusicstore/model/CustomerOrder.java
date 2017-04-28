@@ -8,6 +8,9 @@ import java.io.Serializable;
  */
 @Entity
 public class CustomerOrder implements Serializable {
+
+
+    private static final long serialVersionUID = -6560428165431284818L;
     @Id
     @GeneratedValue
     private int customerOrderId;
