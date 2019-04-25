@@ -27,7 +27,9 @@ public class AdminHome {
     public String adminpage() {
         return "admin";
     }
-
+    
+    //Product inventory 
+  //Product inventory 1
 
     @RequestMapping("/productInventory")
     public String productInventory(Model model) {
